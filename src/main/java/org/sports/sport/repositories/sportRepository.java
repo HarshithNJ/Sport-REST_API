@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface sportRepository extends JpaRepository<sport, Integer> {
 
+    boolean existsByName(String name);
+
 }
