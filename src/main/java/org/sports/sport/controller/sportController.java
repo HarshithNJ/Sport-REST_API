@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -32,5 +35,24 @@ public class sportController {
         return service.saveSports(sports);
     }
     
-    
+
+
+    /*Fetching the Sport Records */
+    //To Fetch all the Records
+    @GetMapping("/sports")
+    public ResponseEntity<Object> getAllSports() {
+        return service.getAllSports();
+    }
+
+    //To Fetch  a recoird by Sport Name
+    @GetMapping("/sports/{name}")
+    public ResponseEntity<Object> FetchSportName(@PathVariable String name){
+        return service.FetchSportName(name);
+    }
+
+    //To fetch a record by the type of sport
+    @GetMapping("/sports/type/{type}")
+    public ResponseEntity<Object> FetchSportType(@PathVariable String type){
+        return service.FetchSportType(type);
+    }
 }
