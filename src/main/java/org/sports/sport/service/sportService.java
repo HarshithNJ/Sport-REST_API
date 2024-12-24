@@ -112,6 +112,47 @@ public class sportService {
             return new ResponseEntity<Object>(map, HttpStatus.FOUND);
         }
     }
+
+
+
+    /* Logic to delete the sport records */
+    public ResponseEntity<Object> deleteById(int id) {
+        Optional<sport> sport = repostiory.findById(id);
+
+        if(sport.isPresent()){
+            repostiory.deleteById(id);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Record Deleted Successfully");
+            map.put("Data", sport.get());
+
+            return new ResponseEntity<Object>(map, HttpStatus.ACCEPTED);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "No sport found with id: " + id);
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+    // public ResponseEntity<Object> deleteByName(String name) {
+    //     Optional<sport> sport = repostiory.findByName(name);
+
+    //     if(sport.isPresent()){
+    //         repostiory.deleteByName(name);
+
+    //         Map<String, Object> map = new HashMap<String, Object>();
+    //         map.put("success", "Record Deleted Successfully");
+    //         map.put("Data", sport.get());
+
+    //         return new ResponseEntity<Object>(map, HttpStatus.ACCEPTED);
+    //     }else{
+    //         Map<String, Object> map = new HashMap<String, Object>();
+    //         map.put("error", "No sport found with name: " + name);
+
+    //         return new ResponseEntity<Object>(map, HttpStatus.NOT_ACCEPTABLE);
+    //     }
+    // }
     
     
 }

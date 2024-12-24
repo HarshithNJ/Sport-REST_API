@@ -14,4 +14,6 @@ public interface sportRepository extends JpaRepository<sport, Integer> {
 
     List<sport> findByType(String type);
 
+    void deleteByName(String name);
+
 }
