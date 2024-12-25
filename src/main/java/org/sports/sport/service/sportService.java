@@ -153,6 +153,58 @@ public class sportService {
     //         return new ResponseEntity<Object>(map, HttpStatus.NOT_ACCEPTABLE);
     //     }
     // }
+
+
+
+
+
+    /* Logic to update the sport records */
+    public ResponseEntity<Object> Update(sport sport) {
+        repostiory.save(sport);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("success", "Record Updated Successfully");
+        map.put("Data", sport);
+
+        return new ResponseEntity<Object>(map, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Object> UpdateSport(int id, sport sport) {
+        if(repostiory.findById(id).isPresent()){
+            sport s = repostiory.findById(id).get();
+
+            if(sport.getName() != null)
+                s.setName(sport.getName());
+
+            if(sport.getAgeLimit() != 0)
+                s.setAgeLimit(sport.getAgeLimit());
+
+            if(sport.getOrigin() != null)
+                s.setOrigin(sport.getOrigin());
+
+            if(sport.getType() != null)
+                s.setType(sport.getType());
+
+            if(sport.getMaxPlayers() != 0)
+                s.setMaxPlayers(sport.getMaxPlayers());
+
+            if(sport.getMinPlayers() !=0)
+                s.setMinPlayers(sport.getMinPlayers());
+            
+            repostiory.save(s);
+
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("success", "Record Updated Successfully");
+            map.put("Data", s);
+
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "No sport found with id: " + id);
+
+            return new ResponseEntity<Object>(map, HttpStatus.NO_CONTENT);
+        }
+    }
     
     
 }

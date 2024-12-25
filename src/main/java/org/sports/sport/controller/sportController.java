@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -71,4 +74,22 @@ public class sportController {
     // public ResponseEntity<Object> deleteByName(@PathVariable String name){
     //     return service.deleteByName(name);
     // }
+
+
+
+
+
+
+    /*Updating the Sport Record */
+    //To Update a Record by using put mappping
+    @PutMapping("/sports")
+    public ResponseEntity<Object> Update(@RequestBody sport sport) {
+        return service.Update(sport);
+    }
+
+    //To Update a Record by using patch mapping
+    @PatchMapping("/sports/{id}")
+    public ResponseEntity<Object> UpdateSport(@PathVariable int id, @RequestBody sport sport){
+        return service.UpdateSport(id, sport);
+    }
 }
