@@ -25,7 +25,7 @@ public class sportService {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("error", "Sport already existe with name: " +sport.getName());
 
-            return new ResponseEntity<Object>(map, HttpStatus.IM_USED);
+            return new ResponseEntity<Object>(map, HttpStatus.BAD_REQUEST);
         }else{
             repostiory.save(sport);
 
@@ -43,7 +43,7 @@ public class sportService {
                 Map<String, Object> map = new HashMap<String, Object>();
                 map.put("error", "Sport already existe with name: " +sport.getName());
 
-                return new ResponseEntity<Object>(map, HttpStatus.IM_USED);
+                return new ResponseEntity<Object>(map, HttpStatus.BAD_REQUEST);
             }
         }
 
